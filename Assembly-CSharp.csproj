@@ -65,7 +65,9 @@
   <ItemGroup>
     <Compile Include="Assets\Resources\Scripts\ClothesInfo.cs" />
     <Compile Include="Assets\Resources\Scripts\CreateObject.cs" />
+    <Compile Include="Assets\Resources\Scripts\DuplicateObject.cs" />
     <Compile Include="Assets\Resources\Scripts\Interaction.cs" />
+    <Compile Include="Assets\Resources\Scripts\SaveScene.cs" />
     <None Include="Assets\TODO.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

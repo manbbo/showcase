@@ -22,8 +22,38 @@ public class Interaction : MonoBehaviour
     {
         if (selected)
         {
-            // logica do teclado e mouse
+            movement();
+            rotate();
+            resize();
         }
+    }
+
+    private void movement()
+    {
+        // Movimentação
+        var direction = Vector3.zero;
+        direction.x -= Input.GetAxis("Horizontal");
+        direction.y += Input.GetAxis("UpDown");
+        direction.z -= Input.GetAxis("Vertical");
+
+        this.transform.Translate(direction * Time.deltaTime);
+    }
+
+    private void rotate()
+    {
+        // Rotação
+        var rotation = Vector3.zero;
+        rotation.y -= Input.GetAxis("Rotate");
+
+        this.transform.Rotate(rotation * Time.deltaTime * 20);
+    }
+
+    private void resize()
+    {
+        // Escala
+        this.transform.localScale += new Vector3(Input.GetAxis("Rescale") * Time.deltaTime,
+                Input.GetAxis("Rescale") * Time.deltaTime,
+                Input.GetAxis("Rescale") * Time.deltaTime) * 20;
     }
 
     private void OnMouseDown()
@@ -43,48 +73,4 @@ public class Interaction : MonoBehaviour
             }
         }
     }
-
-    private void OnMouseOver()
-    {
-        if (Input.GetButton("Fire1")) // direito do mouse
-        {
-            // Movimentação
-            Vector3 direction = Vector3.zero;
-
-            if (Input.mousePosition.x < firstMousePos.x)
-                direction.x = 1;
-            else if (Input.mousePosition.x > firstMousePos.x)
-                direction.x = -1;
-
-            if (Input.mousePosition.y < firstMousePos.y)
-                direction.z = 1;
-            else if (Input.mousePosition.y > firstMousePos.y)
-                direction.z = -1;
-
-            this.transform.localPosition += direction * Time.deltaTime;
-        }
-        else if (Input.GetButton("Fire2")) // esquerdo do mouse
-        {
-            // Rotação
-            Vector3 rotation = Vector3.zero;
-
-            if (Input.mousePosition.x < firstMousePos.x)
-                rotation.y -= 0.5f;
-            else if (Input.mousePosition.x > firstMousePos.x)
-                rotation.y += 0.5f;
-
-            this.transform.Rotate(rotation);
-
-            // Escala
-            Vector3 scaling = Vector3.zero;
-
-            if (Input.mousePosition.y < firstMousePos.y)
-                scaling = (this.transform.localScale.x >= 1) ? new Vector3(-1, -1, -1) * Time.deltaTime : Vector3.zero;
-            else if (Input.mousePosition.y > firstMousePos.y)
-                scaling = (this.transform.localScale.x <= 10) ? new Vector3(1, 1, 1) * Time.deltaTime : Vector3.zero;
-
-            this.transform.localScale += scaling;
-        }
-    }
-
 }

@@ -11,8 +11,9 @@ using UnityEngine.Networking;
 public class CreateObject : MonoBehaviour
 {
 	public string URL = "https://s3-sa-east-1.amazonaws.com/static-files-prod/unity3d/models.json";
-	private ClothesInfo clothes;
 	// url que vamos puxar as informacoes
+	public GameObject[] gameObjects;
+	// texto de aguarde (index 0) e instruções de tela (index 1)
 
 	IEnumerator getData()
     {
@@ -47,19 +48,27 @@ public class CreateObject : MonoBehaviour
 
 					// fazendo o load dos recursos 
 					Debug.Log("Model " + clothes.name);
-					gameObject.transform.localScale = new Vector3(clothes.scale[0], clothes.scale[1], clothes.scale[2]);
+
 					// aplicando rotação do Json
-					gameObject.transform.localPosition = new Vector3(clothes.position[0], clothes.position[1], clothes.position[2]);
+					gameObject.transform.localScale = new Vector3(clothes.scale[0], clothes.scale[1], clothes.scale[2]);
 					// aplicando posicao do Json
-					gameObject.transform.localRotation = Quaternion.Euler(new Vector3(clothes.rotation[0], clothes.rotation[1], clothes.rotation[2]));
+					gameObject.transform.localPosition = new Vector3(clothes.position[0], clothes.position[1], clothes.position[2]);
 					// aplicando rotacao do Json
+					gameObject.transform.localRotation = Quaternion.Euler(new Vector3(clothes.rotation[0], clothes.rotation[1], clothes.rotation[2]));
+					
 
-					gameObject.AddComponent<Interaction>();
-
-					Instantiate(gameObject);
 					// instanciando o objeto para aparecer na cena
+					var instantiated = Instantiate(gameObject);
+
+					instantiated.AddComponent<Interaction>();
+					instantiated.AddComponent<BoxCollider>().center = new Vector3(-0.01583651f, 0.3244349f, -0.1931399f);
+					instantiated.GetComponent<BoxCollider>().size = new Vector3(1.031673f, 1.64887f, 0.6137202f);
+					instantiated.AddComponent<DuplicateObject>();
 				}
 				Debug.Log("All set!!!");
+				
+				gameObjects[0].SetActive(false);
+				gameObjects[1].SetActive(true);
 			}
 			catch (Exception e)
 			{
@@ -74,7 +83,6 @@ public class CreateObject : MonoBehaviour
 
     void Start()
 	{
-		StartCoroutine(getData()); // faz a co-rotina para fazer load dos modelos
-	}
-
+		StartCoroutine(getData()); // faz a co-rotina para fazer load dos modelos 
+	} 
 }
