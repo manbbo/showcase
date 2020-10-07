@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Model
   - Buttons
+  - Color0
+  - Color1
+  - Color2
+  - Texture1
+  - Texture0
+  - Texture2
   layers:
   - Default
   - TransparentFX

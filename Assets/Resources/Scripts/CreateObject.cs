@@ -109,6 +109,14 @@ public class CreateObject : MonoBehaviour
 		instantiated.AddComponent<BoxCollider>().center = new Vector3(-0.01583651f, 0.3244349f, -0.1931399f);
 		instantiated.AddComponent<HandleObject>();
 
+		// fazendo essa etapa somente pois o modelo 
+		// tem várias partes e queria pegar a parte do body em especifico
+		var body = instantiated.transform.Find("clothingSet_04_body").gameObject.GetComponent<SkinnedMeshRenderer>();
+			// pegando o componente Skinned Mesh do material, para adicionar um material do resource
+			// como é só um exemplo, ele terá vários materiais diferentes, e pra cada peça
+			body.materials[0] = Resources.Load<Material>("Material/TestingMaterial") as Material;
+			body.materials[0].mainTexture = Resources.Load<Texture2D>("Models/Cattleya/sources/clothingSet_04_tex");
+
 		return instantiated;
 	}
 
