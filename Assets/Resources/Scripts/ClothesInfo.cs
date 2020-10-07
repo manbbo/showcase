@@ -6,7 +6,7 @@ class Models
 {
 	// classe que recebe as propriedades do objeto "models" que está no JSon
 	public string name;
-	public List<int> position, rotation, scale;
+	public List<float> position, rotation, scale;
 }
 
 [System.Serializable]

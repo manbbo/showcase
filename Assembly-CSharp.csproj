@@ -65,7 +65,8 @@
   <ItemGroup>
     <Compile Include="Assets\Resources\Scripts\ClothesInfo.cs" />
     <Compile Include="Assets\Resources\Scripts\CreateObject.cs" />
-    <Compile Include="Assets\Resources\Scripts\DuplicateObject.cs" />
+    <Compile Include="Assets\Resources\Scripts\HandleObject.cs" />
+    <Compile Include="Assets\Resources\Scripts\HandleScene.cs" />
     <Compile Include="Assets\Resources\Scripts\Interaction.cs" />
     <Compile Include="Assets\Resources\Scripts\SaveScene.cs" />
     <None Include="Assets\TODO.txt" />
