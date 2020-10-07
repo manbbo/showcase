@@ -26,6 +26,9 @@ public class HandleObject : MonoBehaviour
             gObject2.name = (size >= 10) ? "modelo" + (size + 1): "modelo0" + (size + 1);
             gObject2.GetComponent<Interaction>().selected = true;
             gObject.GetComponent<Interaction>().selected = false;
+
+            var thumb = this.GetComponent<CreateObject>().ThumbList(gObject2.transform.Find("Thumb(Clone)").gameObject, "ThumbDuplicated"+size);
+            
         }
     }
 }

@@ -2,7 +2,7 @@
 
 
 [System.Serializable]
-class Models
+public class Models
 {
 	// classe que recebe as propriedades do objeto "models" que está no JSon
 	public string name;
@@ -10,7 +10,7 @@ class Models
 }
 
 [System.Serializable]
-class ClothesInfo
+public class ClothesInfo
 {
 	// classe que recebe o objeto models
 	public List<Models> models;

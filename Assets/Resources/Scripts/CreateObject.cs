@@ -48,7 +48,7 @@ public class CreateObject : MonoBehaviour
 					var model = LoadModel(clothes);
 					var instantiated_model = InstantiateModel(model, clothes);
 					var thumb_cam = CreateThumbCam(instantiated_model);
-					var thumb = ThumbList(thumb_cam);
+					var thumb = ThumbList(thumb_cam, "Thumbnail" + size);
 					// aumentando o "tamanho" pra ter o tracking
 					size++;
 				}
@@ -95,7 +95,7 @@ public class CreateObject : MonoBehaviour
 	}
 
 
-	private GameObject InstantiateModel(GameObject gameObject, Models clothes)
+	public GameObject InstantiateModel(GameObject gameObject, Models clothes)
 	{
 		// instanciando o objeto para aparecer na cena
 		var instantiated = Instantiate(gameObject);
@@ -112,7 +112,7 @@ public class CreateObject : MonoBehaviour
 		return instantiated;
 	}
 
-	private GameObject CreateThumbCam(GameObject instantiated)
+	public GameObject CreateThumbCam(GameObject instantiated)
 	{
 		// criando camera de Thumb
 		var thumb = Instantiate(gameObjects[2]);
@@ -124,7 +124,7 @@ public class CreateObject : MonoBehaviour
 
 		return thumb;
 	}
-	private GameObject ThumbList(GameObject thumb)
+	public GameObject ThumbList(GameObject thumb,  String thumbname)
 	{
 		// fazendo raw image
 		var rawImage = Instantiate(prime_gameObject);
@@ -132,13 +132,13 @@ public class CreateObject : MonoBehaviour
 
 		// criando nova textura
 		var renderTexture = new RenderTexture(2048, 2048, 24, RenderTextureFormat.ARGB32);
-		renderTexture.name = "Texture" + size;
+		renderTexture.name = thumbname;
 		renderTexture.Create();
 
 		// criando novo material
 		var material = new Material(Shader.Find("Unlit/Texture"));
 		material.mainTexture = renderTexture;
-		material.name = "Material" + size;
+		material.name = thumbname;
 
 		// adicionando material e textura no raw image
 		rawImage.GetComponent<RawImage>().texture = renderTexture;
@@ -146,6 +146,8 @@ public class CreateObject : MonoBehaviour
 
 		// colocando parentesco na rawimage
 		rawImage.transform.parent = parent_gameObject.transform;
+		rawImage.transform.localScale = Vector3.one;
+		rawImage.transform.localPosition = Vector3.zero;
 		rawImage.SetActive(true);
 
 		// colocando a textura na camera
