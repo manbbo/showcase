@@ -11,7 +11,7 @@ Segunda etapa:
 - Permitir interação pelo usuário depois de carregada a cena:
  DONE mover objetos, mudar escala e mudar rotação;
  DONE permitir duplicar objetos na cena;
- .permitir trocar cor e textura base(albedo) do material.
+ DONE permitir trocar cor e textura base(albedo) do material.
  .permitir serializar e salvar a cena, utilizando mesma estrutrura de JSON conhecida, em arquivo local no filesystem.
 
 Terceira etapa:
@@ -20,7 +20,7 @@ DONE Desenvolver interface com usuário (UI) utilizando framework de interface d
   DONE Mostrar feedback de "aguarde" enquanto a cena é carregada;
   DONE Mostrar lista de objetos carregados usando Thumbnails: texturas referentes a cada modelo deve ser carregada via Resources;
   DONE Trocar cor e textura dos materiais de cada objeto selecionado via UI:
-    *máximo 3 opções de cores, máximo 3 opções de texturas para cada objeto.
+    DONE máximo 3 opções de cores, máximo 3 opções de texturas para cada objeto.
   .Salvar cena.
 
 Características do projeto:

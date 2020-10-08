@@ -65,11 +65,13 @@ public class HandleObject : MonoBehaviour
                     var colorRawImage = Instantiate(prime_gameObject);
                     // Color
                     colorRawImage.GetComponent<RawImage>().color = colors[i];
+                    colorRawImage.AddComponent<Button>().onClick.AddListener(delegate { ChangeColor(colorRawImage.GetComponent<RawImage>().color); });
                     colorRawImage.transform.parent = colorContainer.transform;
 
                     var textureRawImage = Instantiate(prime_gameObject);
                     // Texture
                     textureRawImage.GetComponent<RawImage>().texture = textures[i];
+                    textureRawImage.AddComponent<Button>().onClick.AddListener(delegate { ChangeTexture(textureRawImage.GetComponent<RawImage>().texture); });
                     textureRawImage.transform.parent = textureContainer.transform;
 
 
@@ -78,7 +80,7 @@ public class HandleObject : MonoBehaviour
 
                     colorRawImage.tag = "Color"+i;
                     textureRawImage.tag = "Texture"+i;
-                } else if (prime_gameObject!=null && GameObject.FindGameObjectsWithTag("Color"+i).Length!= 0 )
+                } else if (prime_gameObject!=null && GameObject.FindGameObjectsWithTag("Color"+i).Length!= 0 && i < 3)
                 {
                     GameObject.FindGameObjectsWithTag("Color"+i)[0].GetComponent<RawImage>().color = colors[i];
                     GameObject.FindGameObjectsWithTag("Texture"+i)[0].GetComponent<RawImage>().texture = textures[i];
@@ -88,5 +90,19 @@ public class HandleObject : MonoBehaviour
             canDisplayTexColor = false;
             lategObject = gObject;
         }
+    }
+
+    void ChangeTexture(Texture t)
+    {
+        gObject.transform.Find("clothingSet_04_body").gameObject.GetComponent<SkinnedMeshRenderer>().materials[0].mainTexture = 
+            t;
+
+        Debug.Log(t);
+    }
+    
+    void ChangeColor(Color c)
+    {
+        gObject.transform.Find("clothingSet_04_body").gameObject.GetComponent<SkinnedMeshRenderer>().materials[0].color =
+            c;
     }
 }
